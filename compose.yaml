@@ -19,12 +19,13 @@ services:
     command: npm run dev -- --host=0.0.0.0
     environment: 
       CHOKIDAR_USEPOLLING: true
-      BACKEND_URL: ${PROJECT_NAME}-django:8080
-    ports:
-      - ${VUE_PORT}:5173
+      BACKEND_HOST: ${PROJECT_NAME}-django:8080
+      FRONTEND_HOST: ${PROJECT_NAME}-vue
     volumes:
       - ./frontend:/app
       - ignore:/app/node_modules
+    ports:
+      - ${VUE_PORT}:5173
 
   backend:
     container_name: ${PROJECT_NAME}-django 

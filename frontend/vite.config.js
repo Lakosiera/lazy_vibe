@@ -19,9 +19,11 @@ export default ({ mode }) => {
       },
     },
     server: {
+      allowedHosts: [`${env.FRONTEND_HOST}`],
+      // allowedHosts: true, // любой хост
       proxy: {
         "/api": {
-          target: `http://${env.BACKEND_URL}`,
+          target: `http://${env.BACKEND_HOST}`,
           changeOrigin: true,
           secure: false,
           rewriteWsOrigin: true,
