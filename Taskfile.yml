@@ -1,0 +1,36 @@
+version: '3'
+
+env:
+  DOCKER_CLI_HINTS: false
+
+tasks:
+  default:
+    cmds:
+      - task: up
+
+  up:
+    desc: "server up"
+    cmds:
+      - docker compose up -d
+
+  down:
+    desc: "server down"
+    cmds:
+      - docker compose down
+  
+  watch:
+    desc: "server watch"
+    cmds:
+      - docker compose watch
+
+  restart:
+    desc: "server restart"
+    cmds:
+      - task: down
+      - task: up
+
+  reload:
+    desc: "nginx reload"
+    cmds:
+      - docker exec -it godot-nginx nginx -s reload
+
