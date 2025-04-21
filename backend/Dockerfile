@@ -3,7 +3,7 @@
 #############################
 
 # Указываем на основе какого образа будет создан новый образ
-FROM python:3.13.3-alpine
+FROM python:3.13-alpine
 
 # указяваем переменные окружаешей среды внутри контенера
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -19,7 +19,7 @@ COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
 # копируем код сервера 
-COPY ./server ./
+COPY ./ ./
 
 # открываем во вне порт контенера
 EXPOSE 8080

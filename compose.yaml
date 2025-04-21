@@ -4,7 +4,7 @@ services:
     build: ./nginx
     command: nginx -g "daemon off;"
     # volumes:
-    #   - ./srv-data:/data/www
+    #   - ./nginx/conf.d:/etc/nginx/conf.d
     ports:
       - ${NGINX_PORT}:8080
     develop:
@@ -29,9 +29,9 @@ services:
   backend:
     container_name: ${PROJECT_NAME}-django 
     build: ./backend
-    command: python manage.py runserver 0.0.0.0:8000 
-    # volumes: 
-    #   - ./backend/server:/server
+    command: python manage.py runserver 0.0.0.0:8080 
+    volumes: 
+      - ./backend:/server
     ports:
       - ${DJANGO_PORT}:8080
 
