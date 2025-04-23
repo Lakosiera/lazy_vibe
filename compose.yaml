@@ -1,5 +1,6 @@
 services:
   server:
+    image: lazyvibe-nginx:latest
     container_name: ${PROJECT_NAME}-nginx
     build: ./nginx
     command: nginx -g "daemon off;"
@@ -14,6 +15,7 @@ services:
           target: /etc/nginx/conf.d
 
   frontend:
+    image: lazyvibe-vue:latest
     container_name: ${PROJECT_NAME}-vue
     build: ./frontend
     command: npm run dev -- --host=0.0.0.0
@@ -23,11 +25,12 @@ services:
       FRONTEND_HOST: ${PROJECT_NAME}-vue
     volumes:
       - ./frontend:/app
-      - ignore:/app/node_modules
+      - vue-node_modules:/app/node_modules
     ports:
       - ${VUE_PORT}:5173
 
   backend:
+    image: lazyvibe-django:latest
     container_name: ${PROJECT_NAME}-django 
     build: ./backend
     command: python manage.py runserver 0.0.0.0:8080 
@@ -37,4 +40,4 @@ services:
       - ${DJANGO_PORT}:8080
 
 volumes:
-  ignore:
+  vue-node_modules:

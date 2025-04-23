@@ -4,7 +4,7 @@ import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default ({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
@@ -13,6 +13,15 @@ export default ({ mode }) => {
       vue(),
       vueDevTools(),
     ],
+    css: {
+      preprocessorOptions: {
+        // https://github.com/sass/dart-sass/issues/2280
+        scss: {
+          api: 'modern',
+          silenceDeprecations: ['mixed-decls', 'color-functions'],
+        },
+      },
+    },
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -27,7 +36,7 @@ export default ({ mode }) => {
           changeOrigin: true,
           secure: false,
           rewriteWsOrigin: true,
-          // rewrite: (path) => path.replace(/^\/api/, ''),
+          rewrite: (path) => path.replace(/^\/api/, ''),
         }
       }
     }
