@@ -35,3 +35,57 @@
         -10px 0 80px #f0f, // outer left magenta
         10px 0 80px #0ff; // outer right cyan
 }
+
+
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.fx-glow-box {
+    background: var(--fx-glow-body-color);
+    border-radius: var(--fx-glow-radius);
+    position: relative;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: calc(var(--fx-glow-border) * -1);
+        z-index: -1;
+    
+        // border-radius: inherit;
+        border-radius: calc(var(--fx-glow-border) + var(--fx-glow-radius));
+    
+        background-image: conic-gradient(
+            from var(--gradient-angle),
+            transparent,
+            #1976ed,
+            transparent 25%
+        );
+        // background: conic-gradient(
+        //     from var(--gradient-angle),
+        //     var(--clr-3),
+        //     var(--clr-4),
+        //     var(--clr-5),
+        //     var(--clr-4),
+        //     var(--clr-3),
+        // );
+        animation: rotation 10s linear infinite;  
+    }
+
+    &::after {
+        filter: blur(var(--fx-glow-blur));
+    }
+}
+
+@keyframes rotation {
+    0% {
+        --gradient-angle: 0deg;
+    }
+
+    100% {
+        --gradient-angle: 360deg;
+    }
+}

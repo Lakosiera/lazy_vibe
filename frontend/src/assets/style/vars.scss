@@ -5,4 +5,15 @@
     --lv-glow-size: 30px;
     --lv-glow-sm-color: rgba(255, 0, 255, 0.498);
     --lv-glow-sm-size: 30px;
+
+    // blur mask
+    --fx-blur-mask-size: 125px;
+    --fx-blur-mask-feather-in: 75%;
+    --fx-blur-mask-feather-out: 25%;
+    
+    // border glow
+    --fx-glow-blur: 3.5rem;
+    --fx-glow-border: 8px;
+    --fx-glow-radius: var(--bs-border-radius);
+    --fx-glow-body-color: var(--bs-body-bg);
 }

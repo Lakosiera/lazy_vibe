@@ -20,9 +20,11 @@ import VibeHelp from '../components/VibeHelp.vue';
             <div class="container">
                 <div class="row justify-content-md-center">
                     <div class="col mb-1">
-                        <RouterLink class="btn btn-primary w-100 shadow"  to="/idea">
-                            <TextIcon :show="true" class="fx-glow mx-auto" />
-                        </RouterLink>
+                        <div class="fx-glow-box">
+                            <RouterLink class="btn btn-primary w-100 shadow"  to="/idea">
+                                <TextIcon :show="true" class="fx-glow mx-auto" />
+                            </RouterLink>
+                        </div>
                     </div>
                     <div class="col mb-1">
                         <RouterLink class="btn btn-primary w-100 shadow"  to="/search">
