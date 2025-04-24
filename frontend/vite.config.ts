@@ -9,7 +9,7 @@ export default ({ mode }: UserConfig) => {
   const env = loadEnv(mode || '', process.cwd(), '');
 
   return defineConfig({
-    base: `${env.BASE}`,
+    base: `${env.BASE || '/'}`,
     plugins: [
       vue(),
       vueDevTools(),
