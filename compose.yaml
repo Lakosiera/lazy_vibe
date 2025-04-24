@@ -23,6 +23,7 @@ services:
       CHOKIDAR_USEPOLLING: true
       BACKEND_HOST: ${PROJECT_NAME}-django:8080
       FRONTEND_HOST: ${PROJECT_NAME}-vue
+      BASE: '/'
     volumes:
       - ./frontend:/app
       - vue-node_modules:/app/node_modules

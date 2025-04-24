@@ -25,6 +25,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+      BASE: '/lazy_vibe/'
     runs-on: ubuntu-latest
     defaults:
       run:
