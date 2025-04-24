@@ -1,6 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Comfortaa:wght@300..700&family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Sofia+Sans:wght@300&display=swap');
+
 // Шрифт Anta
 .font-anta {
     font-family: "Anta", sans-serif;
     font-weight: 400;
+    font-style: normal;
+}
+
+.font-sofia-sans {
+    font-family: "Sofia Sans", sans-serif;
+    // font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.font-sansation-light {
+    font-family: "Sansation", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+  
+.font-sansation-regular {
+    font-family: "Sansation", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.font-font-sansation-bold {
+    font-family: "Sansation", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+  
+.font-sansation-light-italic {
+    font-family: "Sansation", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+  
+.font-sansation-regular-italic {
+    font-family: "Sansation", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+  
+.font-sansation-bold-italic {
+    font-family: "Sansation", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.font-comfortaa {
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.font-comfortaa-700 {
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
     font-style: normal;
 }

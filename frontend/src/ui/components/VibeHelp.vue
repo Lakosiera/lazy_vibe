@@ -1,24 +1,30 @@
 <script setup lang="ts">
 import LazeVibeIcon from '../icons/IconLazeVibe.vue'
 
+interface Props {
+    title?: string,
+}
+
+const { title } = withDefaults(defineProps<Props>(), {
+    title: "",
+})
 </script>
 <template>
     <div class="d-flex">
-        <LazeVibeIcon class="mx-auto d-sm-block d-none lv-glow-sm" />
-        <div class="flex-fill py-4">
-            <div class="d-flex">
-                <div class="tri-bottom align-self-end z-1 d-sm-block d-none"></div>
-                <div class="card shadow border-0 rounded-4 bg-body-tertiary">
+        <LazeVibeIcon class="fx-glow-sm align-self-end d-sm-block d-none" />
+        <div class="flex-fill pb-4">
+            <div class="d-flex flex-row align-self-start">
+                <div class="z-2 tri-bottom align-self-end d-sm-block d-none"></div>
+                <div class="z-1 card shadow border-0 rounded-4 bg-body-tertiary flex-fill">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Что вы хотите сделать?</h5>
+                        <h5 v-if="title" class="card-title text-center">{{ title }}</h5>
                         <p class="card-text lh-lg">
-                            У вас есть <span class="fw-bold">гениальная</span> идея? Или вы ищети идею.
-                            <br>Тогда мы вам поможем.
+                            <slot></slot> <!-- slot outlet -->
                         </p>
                     </div>
                 </div>
             </div>
-
+            <div class=""><br><br><br></div>
         </div>
     </div>
 </template>

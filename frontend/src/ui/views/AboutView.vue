@@ -1,27 +1,27 @@
 <script setup lang="ts">
 import LazeVibeIcon from '../icons/IconLazeVibe.vue'
-
+import VibeHelp from '../components/VibeHelp.vue';
 </script>
 
 <template>
     <div class="container-fluid py-3">
-        <div class="container position-relative">
-
-            <div class="neon position-absolute top-0"></div>
-            <div class="row">
-                <div class="col"></div>
-                <div class="col-lg-6">
-                    <div class="card shadow-lg _border-0">
-                        <LazeVibeIcon class="lv-glow-sm mx-auto" />
-                        <div class="card-body text-center h3 fw-light">
-                            Проект по генарции <span class="fw-bold">гениальных</span> идей :)
-                        </div>
-                    </div>
+        <div class=" d-flex justify-content-center">
+            <VibeHelp title="О проекте?">
+                Проект по генарции <span class="fw-bold">гениальных</span> идей :)
+                <br><br>
+                <div class="row">
+                    <div class="col">Исходный код</div>
+                    <div class="col"><a href="https://github.com/Lakosiera/lazy_vibe">github.com</a></div>
                 </div>
-                <div class="col"></div>
-            </div>
+                <div class="row">
+                    <div class="col">Автор</div>
+                    <div class="col">Саразеева Алёна</div>
+                </div>
+            </VibeHelp>
+        </div>
 
+        <div class="container position-relative">
+            <div class="fx-neon position-absolute top-0"></div>
         </div>
     </div>
-
 </template>

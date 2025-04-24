@@ -4,21 +4,31 @@ import VibeHelp from '../components/VibeHelp.vue';
 </script>
 
 <template>
-    <div class="container-fluid py-3">
-        <div class="container">
-            <VibeHelp />
-        </div>
-        <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="col mb-1">
-                    <a href="#" class="btn btn-primary w-100 shadow">
-                        <TextIcon :show="true" class="logo mx-auto" />
-                    </a>
+    <div class="lv-fill d-flex justify-content-center">
+        <div class="align-self-center">
+            <div class="container">
+                <div class=" d-flex justify-content-center">
+                    <VibeHelp title="Что вы хотите сделать?">
+                        <div class="fx-text-gradient h2 lh-base font-comfortaa-700">
+                            У вас есть <span class="fw-bold">гениальная</span> идея?
+                            <br>Или вы ищети идею.
+                            <br>Тогда мы вам поможем.
+                        </div>
+                    </VibeHelp>
                 </div>
-                <div class="col mb-1">
-                    <a href="#" class="btn btn-primary w-100 р-100 shadow">
-                        <TextIcon :show="false" class="logo mx-auto" />
-                    </a>
+            </div>
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col mb-1">
+                        <RouterLink class="btn btn-primary w-100 shadow"  to="/idea">
+                            <TextIcon :show="true" class="fx-glow mx-auto" />
+                        </RouterLink>
+                    </div>
+                    <div class="col mb-1">
+                        <RouterLink class="btn btn-primary w-100 shadow"  to="/search">
+                            <TextIcon :show="false" class="fx-glow mx-auto" />
+                        </RouterLink>
+                    </div>
                 </div>
             </div>
         </div>

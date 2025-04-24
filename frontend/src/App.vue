@@ -4,13 +4,8 @@ import Navbar from './ui/components/Navbar.vue'
 </script>
 
 <template>
-  <Navbar class="z-1"/>
-
-
-
-
-  <RouterView />
+  <div class="lv-fill">
+    <Navbar class="z-1"/>
+    <RouterView />
+  </div>
 </template>
-
-<style scoped>
-</style>
