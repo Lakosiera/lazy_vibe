@@ -42,8 +42,8 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-        # env:
-        #   BASE: '/lazy_vibe/'
+        env:
+          BASE: ${{ github.event.repository.name }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
