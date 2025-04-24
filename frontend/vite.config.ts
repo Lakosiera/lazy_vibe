@@ -9,6 +9,7 @@ export default ({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   return defineConfig({
+    base: `${env.BASE}`,
     plugins: [
       vue(),
       vueDevTools(),
