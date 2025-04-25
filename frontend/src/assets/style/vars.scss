@@ -8,12 +8,12 @@
 
     // blur mask
     --fx-blur-mask-size: 125px;
-    --fx-blur-mask-feather-in: 75%;
+    --fx-blur-mask-feather-in: 50%;
     --fx-blur-mask-feather-out: 25%;
     
     // border glow
     --fx-glow-blur: 3.5rem;
-    --fx-glow-border: 8px;
+    --fx-glow-border: 4px;
     --fx-glow-radius: var(--bs-border-radius);
     --fx-glow-body-color: var(--bs-body-bg);
 }

@@ -4,11 +4,10 @@ import { useTemplateRef } from 'vue'
 const elm = useTemplateRef<HTMLDivElement>('lv-bg')
 
 function onMouseMove(e: MouseEvent) {
-    setPositionProperty(e.screenX, e.clientY + window.scrollY)
+    setPositionProperty(e.screenX - window.screenX , e.clientY  - window.screenY + window.screenTop)
 }
 
 function onMouseLeave(e: MouseEvent) {
-    console.log(e.screenX)
     setPositionProperty()
 }
 
@@ -29,17 +28,24 @@ function setPositionProperty(x:number = -9999, y:number = -9999) {
 <style lang="scss" scoped>
 
 .lv-blurred-overlay {
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); // размытие она
     mask-image: radial-gradient(
 		circle var(--fx-blur-mask-size) at var(--mouse-x) var(--mouse-y),
 		transparent calc(100% - var(--fx-blur-mask-feather-in)), // внутреннее размытие края
 		black calc(100% + var(--fx-blur-mask-feather-out)), // внешнее размытие края
 	);
-	// transition: backdrop-filter 0.3s ease;
+	transition: backdrop-filter 0.3s ease;
 }
 
 .lv-background {
     background-image: url('@/assets/svg/grid.svg');
-	opacity: 0.5;
+	opacity: 0.2; // прозрачность фона
+
+    @supports (-moz-appearance:none) {
+        // поддержка FIrefox
+        background-image: url('@/assets/svg/grid_noanim.svg');
+        opacity: 0.1;
+    }
 }
+
 </style>

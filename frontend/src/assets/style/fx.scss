@@ -81,11 +81,15 @@
 }
 
 @keyframes rotation {
-    0% {
-        --gradient-angle: 0deg;
-    }
-
-    100% {
-        --gradient-angle: 360deg;
+    to {
+        --gradient-angle: 1turn;
     }
 }
+
+// https://codepen.io/Bembit/pen/PwoOQwe
+// https://codepen.io/e11world/pen/oNVNbNo
+// https://codepen.io/mohan-aiyer/pen/XJrXMQw
+// https://codepen.io/jgarrow/pen/jOpoEQd
+// https://codepen.io/thebabydino/pen/raBKVRG
+
+// https://codepen.io/thebabydino/pen/KwPBvzo

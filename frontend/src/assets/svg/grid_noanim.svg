@@ -310,11 +310,6 @@
          y2="200"
          stroke="cyan"
          id="line44">
-         <animate
-            attributeName="stroke-opacity"
-            values="0;.5;0"
-            dur="4s"
-            repeatCount="indefinite" />
       </line>
       <line
          x1="0"
@@ -323,11 +318,6 @@
          y2="100"
          stroke="cyan"
          id="line45">
-         <animate
-            attributeName="stroke-opacity"
-            values="0;.5;0"
-            dur="6s"
-            repeatCount="indefinite" />
       </line>
       <line
          x1="120"
@@ -336,11 +326,6 @@
          y2="200"
          stroke="cyan"
          id="line46">
-         <animate
-            attributeName="stroke-opacity"
-            values="0;.5;0"
-            dur="8s"
-            repeatCount="indefinite" />
       </line>
       <line
          x1="65"
@@ -349,11 +334,6 @@
          y2="50"
          stroke="cyan"
          id="line47">
-         <animate
-            attributeName="stroke-opacity"
-            values="0;.5;0"
-            dur="6s"
-            repeatCount="indefinite" />
       </line>
    </g>
 </svg>
