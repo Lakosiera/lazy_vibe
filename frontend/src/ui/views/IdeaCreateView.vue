@@ -19,13 +19,17 @@
     </div>
     <div class="mb-3">
         <label for="input2" class="form-label">Идея</label>
-        <textarea class="form-control" id="input2" rows="8"  aria-describedby="help2"></textarea>
+        <textarea class="form-control" id="input2" rows="6"  aria-describedby="help2"></textarea>
         <div id="help2" class="form-text">Описть идею своими слолвами</div>
     </div>
 
     <div class="d-grid gap-2">
         <button type="submit" class="btn btn-primary">Подумай за меня!</button>
         <button type="submit" class="btn btn-success">Поделиться идеей</button>
+    </div>
+
+    <div class="progress mt-3" role="progressbar" aria-label="Success striped example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+        <div class="bg-success progress-bar progress-bar-striped progress-bar-animated" style="width: 25%"></div>
     </div>
 </form>
 
