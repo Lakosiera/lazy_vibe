@@ -1,13 +1,14 @@
-import type { Search } from "@/entity/search";
+import type { Search } from "@/entity/idea";
 
 export const api = { search }
 
-async function search(text: string): Promise<Search | null> {
-    let response = await fetch("/api/search", {
-        method: "Get"
-    })
+// TODO
+// const baseUrl = "api"
+const baseUrl = "demo/api"
 
-    let json = await response.json()
-    // if (response.status != 200) throw new Error(json.error)
-    return json
+async function search(text: string): Promise<Search[]> {
+    const response = await fetch(`${baseUrl}/ideas.json`, {
+        // method: "Get"
+    })
+    return await response.json()
 }
