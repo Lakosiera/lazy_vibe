@@ -4,17 +4,13 @@ import { debounce } from "@/utils/input";
 import IconSearch from "@/ui/icons/IconSearch.vue";
 import { useApiStore } from '@/stores/api.store';
 
-const isInput = ref(false)
-const isSearching = ref(false)
-
 const api = useApiStore()
 
-let searchDebounce = debounce((value: string) => {
+const isSearching: Ref<boolean> = ref(false)
+
+const searchDebounce = debounce((value: string) => {
     api.doSearch(value)
-        .then((data: any) => {
-            isSearching.value = false
-        })
-        .catch((error) => {
+        .finally(() => {
             isSearching.value = false
         })
 }, 200)
@@ -22,11 +18,8 @@ let searchDebounce = debounce((value: string) => {
 function searchInput(event: Event) {
     const el = event.target as HTMLInputElement
     if (el.value.trim() != "") {
-        isInput.value = true
         isSearching.value = true
         searchDebounce(el.value || "")
-    } else {
-        isInput.value = false
     }
 }
 </script>
@@ -46,30 +39,31 @@ function searchInput(event: Event) {
                                 <IconSearch class="text-primary-emphasis" />
                             </div>
                         </span>
-                        <input @input="searchInput" type="text" class="form-control" placeholder="Подайте мне идею!"
-                            aria-label="Username" aria-describedby="addon-wrapping">
+                        <input @input="searchInput" v-model="api.search.query" 
+                            type="text" class="form-control"
+                            placeholder="Подайте мне идею!" aria-label="Username" aria-describedby="addon-wrapping">
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="container text-center mt-5">
-            <div v-if="!isInput" class="">
+            <div v-if="api.searchIsQueryEmpty || api.searchIsEmpty" class="">
                 В голове пусто
             </div>
         </div>
 
-        <div v-if="isInput" class=" container mt-5 lh-lg text-start">
-            <div class="row">
+        <div v-if="!api.searchIsQueryEmpty && !api.searchIsEmpty" class=" container mt-5 lh-lg text-start">
+            <div class="row text-center">
                 <div class="col-3">Идея</div>
                 <div class="col">Описание</div>
                 <div class="col-2">Сроки</div>
             </div>
-            
-            <div v-for="res in api.search" class="row">
+
+            <div v-for="res in api.searchResult" class="row">
                 <div class="col-3">{{ res.name }}</div>
                 <div class="col text-truncate">{{ res.description }}</div>
-                <div class="col-2">{{ res.tome }}</div>
+                <div class="col-2">{{ res.time }}</div>
             </div>
         </div>
     </div>

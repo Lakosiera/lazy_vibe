@@ -1,5 +1,6 @@
-export interface Search {
+export interface Idea {
     name: string
     description: string 
-    tome: number,
+    time?: string | null,
+    instruction?: string | null,
 }

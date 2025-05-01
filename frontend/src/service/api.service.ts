@@ -1,13 +1,13 @@
-import type { Search } from "@/entity/idea";
+import type { Idea } from "@/entity/idea";
+import { isGitHub } from "@/utils/utils";
 
 export const api = { search }
 
-// TODO
-// const baseUrl = "api"
-const baseUrl = "demo/api"
+const BASE_API_URL = (!isGitHub()) ? "api" : "demo/api"
+const SUFFIX = (!isGitHub()) ? "" : ".json"
 
-async function search(text: string): Promise<Search[]> {
-    const response = await fetch(`${baseUrl}/ideas.json`, {
+async function search(text: string): Promise<Idea[]> {
+    const response = await fetch(`${BASE_API_URL}/ideas${SUFFIX}`, {
         // method: "Get"
     })
     return await response.json()
