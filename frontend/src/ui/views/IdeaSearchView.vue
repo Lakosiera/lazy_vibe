@@ -1,15 +1,15 @@
 <script setup lang="ts">
+import IconSearch from "@/ui/icons/IconSearch.vue";
 import { ref, type Ref } from 'vue';
 import { debounce } from "@/utils/input";
-import IconSearch from "@/ui/icons/IconSearch.vue";
-import { useApiStore } from '@/stores/api.store';
+import { useSearchStore } from '@/stores/api.store';
 
-const api = useApiStore()
+const search = useSearchStore()
 
 const isSearching: Ref<boolean> = ref(false)
 
 const searchDebounce = debounce((value: string) => {
-    api.doSearch(value)
+    search.doSearch(value)
         .finally(() => {
             isSearching.value = false
         })
@@ -39,7 +39,7 @@ function searchInput(event: Event) {
                                 <IconSearch class="text-primary-emphasis" />
                             </div>
                         </span>
-                        <input @input="searchInput" v-model="api.search.query" 
+                        <input @input="searchInput" v-model="search.query" 
                             type="text" class="form-control"
                             placeholder="Подайте мне идею!" aria-label="Username" aria-describedby="addon-wrapping">
                     </div>
@@ -48,19 +48,19 @@ function searchInput(event: Event) {
         </div>
 
         <div class="container text-center mt-5">
-            <div v-if="api.searchIsQueryEmpty || api.searchIsEmpty" class="">
+            <div v-if="search.searchIsQueryEmpty || search.searchIsEmpty" class="">
                 В голове пусто
             </div>
         </div>
 
-        <div v-if="!api.searchIsQueryEmpty && !api.searchIsEmpty" class=" container mt-5 lh-lg text-start">
+        <div v-if="!search.searchIsQueryEmpty && !search.searchIsEmpty" class=" container mt-5 lh-lg text-start">
             <div class="row text-center">
                 <div class="col-3">Идея</div>
                 <div class="col">Описание</div>
                 <div class="col-2">Сроки</div>
             </div>
 
-            <div v-for="res in api.searchResult" class="row">
+            <div v-for="res in search.searchResult" class="row">
                 <div class="col-3">{{ res.name }}</div>
                 <div class="col text-truncate">{{ res.description }}</div>
                 <div class="col-2">{{ res.time }}</div>
