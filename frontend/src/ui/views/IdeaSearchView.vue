@@ -2,7 +2,7 @@
 import IconSearch from "@/ui/icons/IconSearch.vue";
 import { ref, type Ref } from 'vue';
 import { debounce } from "@/utils/input";
-import { useSearchStore } from '@/stores/api.store';
+import { useSearchStore } from '@/stores/search.store';
 
 const search = useSearchStore()
 
