@@ -3,6 +3,7 @@ import IconSearch from "@/ui/icons/IconSearch.vue";
 import { ref, type Ref } from 'vue';
 import { debounce } from "@/utils/input";
 import { useSearchStore } from '@/stores/search.store';
+import { RouterLink } from "vue-router";
 
 const search = useSearchStore()
 
@@ -54,16 +55,23 @@ function searchInput(event: Event) {
         </div>
 
         <div v-if="!search.searchIsQueryEmpty && !search.searchIsEmpty" class=" container mt-5 lh-lg text-start">
-            <div class="row text-center">
-                <div class="col-3">Идея</div>
-                <div class="col">Описание</div>
-                <div class="col-2">Сроки</div>
-            </div>
-
-            <div v-for="res in search.searchResult" class="row">
-                <div class="col-3">{{ res.name }}</div>
-                <div class="col text-truncate">{{ res.description }}</div>
-                <div class="col-2">{{ res.time }}</div>
+            <div class="list-group list-group-flush">
+                <div class="list-group-item p-1">
+                    <div class="row text-center">
+                        <div class="col-3">Идея</div>
+                        <div class="col">Описание</div>
+                        <div class="col-2">Сроки</div>
+                    </div>
+                </div>
+                <RouterLink v-for="res in search.searchResult"
+                    class="list-group-item list-group-item-action p-1" 
+                    :to="{name: 'ideaId', params: {id: res.id}}">
+                    <div class="row">
+                        <div class="col-3">{{ res.name }}</div>
+                        <div class="col text-truncate">{{ res.description }}</div>
+                        <div class="col-2">{{ res.time }}</div>
+                    </div>
+                </RouterLink>
             </div>
         </div>
     </div>

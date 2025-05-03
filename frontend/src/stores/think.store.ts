@@ -11,8 +11,8 @@ interface State {
 
 const defaultState: State = {
     idea: {
-        name: "TODO",
-        description: "TODO"
+        name: "TODO убрать",
+        description: "TODO убрать"
     },
     inProcesse: false,
 }
@@ -28,10 +28,14 @@ export const useThinkStore = defineStore(STORE_NAME, {
     actions: {
         async doThinking(idea: Idea) {
             try {
-                console.log("doThinking")
                 this.inProcesse = true
-                this.idea = await api.think(idea)
-                // this.think.inProcesse = false
+                const res = await api.think(idea)
+                this.idea = {
+                    name: this.idea.name,
+                    description: this.idea.description,
+                    instruction: res.instruction,
+                    time: res.time
+                }
             } catch (error) {
                 console.log(error)
             }

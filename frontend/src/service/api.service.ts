@@ -7,7 +7,7 @@ const BASE_API_URL = (!isGitHub()) ? "api" : "demo/api"
 const SUFFIX = (!isGitHub()) ? "" : ".json"
 
 async function search(text: string): Promise<Idea[]> {
-    const response = await fetch(`${BASE_API_URL}/ideas${SUFFIX}`, {
+    const response = await fetch(`${BASE_API_URL}/search${SUFFIX}`, {
         // method: "Get"
     })
     return await response.json()

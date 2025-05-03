@@ -13,14 +13,17 @@ export function debounce<T extends (...args: any[]) => any>(callback: T, waitFor
     }
 }
 
-export function typeWriter(output: Ref<string>, text: string, speed: number = 1000) {
+export function typeWriter(text: string, waitFor: number, onAdd: (line: string) => void, done: () => void) {
     const textLines = text.split("\n")
-
-    for (const line of textLines) {
+    for (let index = 0; index < textLines.length; index++) {
+        const line = textLines[index];
         setTimeout(() => {
-            output.value += line + "\n"
-        }, speed)
-    }
+            onAdd(line + "\n")
 
-    // TODO done
+            if (index + 1 >= textLines.length) {
+                done()
+            }
+
+        }, waitFor * index + 1)
+    }
 }

@@ -16,7 +16,7 @@ import LogoIcon from '../icons/IconLogo.vue'
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <RouterLink class="nav-link " activeClass="active" to="/idea">
+                        <RouterLink class="nav-link " activeClass="active" to="/think">
                             Есть идея!
                         </RouterLink>
                     </li>

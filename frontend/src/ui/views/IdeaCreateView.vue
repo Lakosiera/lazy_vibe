@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Idea } from '@/entity/idea';
 import { useThinkStore } from '@/stores/think.store';
 import { typeWriter } from '@/utils/input';
 import { storeToRefs } from 'pinia';
@@ -10,28 +11,28 @@ const { idea, inProcesse } = storeToRefs(think)
 
 const readyToThink: Ref<boolean> = ref(think.ideaReadyToThink)
 
-const instruction: Ref<string> = ref("")
+const instruction: Ref<string> = ref(think.idea.instruction || "")
+
 
 watch(idea, async (idea, oldIdea) => {
+    if ((idea.instruction?.length || 0) > 0) {
+        typeWriter(idea.instruction || "", 1000, (line: string) => {
+            instruction.value += line
+        }, () => {
+            think.inProcesse = false
+        })
+    } else {
+        think.inProcesse = false
+    }
+})
+
+watch(think.idea, async (idea, oldIdea) => {
     readyToThink.value = think.ideaReadyToThink
-
-    // console.log(idea.instruction, idea.instruction != oldIdea.instruction)
-
-    // let array = idea.instruction?.split("\n")
-
-    typeWriter(instruction, idea.instruction || "")
-
-    instruction.value = idea.instruction || ""
-
-    console.log("!> ", instruction.value)
-    
-    // if (idea.instruction && idea.instruction.length > 0 && idea.instruction == oldIdea.instruction) {
-    //     instruction.value = idea.instruction
-    // }
 })
 
 
 function onSubmit(data: Event) {
+    instruction.value = ""
     think.doThinking(think.idea)
 }
 </script>
@@ -48,8 +49,8 @@ function onSubmit(data: Event) {
                             <form @submit.prevent="onSubmit">
                                 <div class="lv-group">
                                     <div class="input-group">
-                                        <input v-model.trim="think.idea.name" class="form-control" type="text"
-                                            id="name" required placeholder="Короткое навание">
+                                        <input v-model.trim="think.idea.name" class="form-control" type="text" id="name"
+                                            required placeholder="Короткое навание">
                                     </div>
                                     <div class="input-group">
                                         <textarea v-model.trim="think.idea.description" class="form-control"
@@ -61,17 +62,17 @@ function onSubmit(data: Event) {
                                 <div v-if="!think.ideaEmpty || think.inProcesse" class="card mt-2">
                                     <div class="card-body p-0">
                                         <div class="p-2">
-                                            Инструкция к применению:
-                                            <br>
-                <pre class="font-comfortaa lv-instruction m-0 p-0">{{ instruction }}</pre>
+                                            <!-- Инструкция к применению:
+                                            <br> -->
+                                            <pre class="font-comfortaa lv-instruction m-0 p-0">{{ instruction }}</pre>
                                         </div>
                                     </div>
-                                    <div class="card-body p-0 text-center">
+                                    <div v-if="think.inProcesse" class="card-body p-0 text-center">
                                         <div class="d-grid gap-2 _mt-2 rounded-bottom">
                                             <button type="submit" class="btn btn-sm btn-success rounded-top-0">
                                                 <span class="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
                                                 <span role="status">
-                                                    Остановиь!
+                                                    <!-- Остановиь! -->
                                                 </span>
                                             </button>
                                         </div>
@@ -83,7 +84,6 @@ function onSubmit(data: Event) {
                                         <span role="status">Думай голова!</span>
                                     </button>
                                 </div>
-                                {{ think.inProcesse }}
 
                                 <!-- <div class="progress mt-3" role="progressbar" aria-label="Success striped example"
                                     aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">

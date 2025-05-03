@@ -21,7 +21,7 @@ import VibeHelp from '../components/VibeHelp.vue';
                 <div class="row justify-content-md-center">
                     <div class="col mb-1">
                         <div class="fx-glow-box">
-                            <RouterLink class="btn btn-primary w-100 shadow"  to="/idea">
+                            <RouterLink class="btn btn-primary w-100 shadow"  to="/think">
                                 <TextIcon :show="true" class="fx-glow mx-auto" />
                             </RouterLink>
                         </div>
