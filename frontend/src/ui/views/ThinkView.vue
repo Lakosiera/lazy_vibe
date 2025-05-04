@@ -6,13 +6,10 @@ import { storeToRefs } from 'pinia';
 import { ref, watch, type Ref } from 'vue';
 
 const think = useThinkStore()
-
 const { idea, inProcesse } = storeToRefs(think)
 
 const readyToThink: Ref<boolean> = ref(think.ideaReadyToThink)
-
 const instruction: Ref<string> = ref(think.idea.instruction || "")
-
 
 watch(idea, async (idea, oldIdea) => {
     if ((idea.instruction?.length || 0) > 0) {
@@ -62,15 +59,15 @@ function onSubmit(data: Event) {
                                 <div v-if="!think.ideaEmpty || think.inProcesse" class="card mt-2">
                                     <div class="card-body p-0">
                                         <div class="p-2">
-                                            <!-- Инструкция к применению:
-                                            <br> -->
+                                            <!-- Инструкция к применению: -->
                                             <pre class="font-comfortaa lv-instruction m-0 p-0">{{ instruction }}</pre>
                                         </div>
                                     </div>
                                     <div v-if="think.inProcesse" class="card-body p-0 text-center">
                                         <div class="d-grid gap-2 _mt-2 rounded-bottom">
                                             <button type="submit" class="btn btn-sm btn-success rounded-top-0">
-                                                <span class="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
+                                                <span class="spinner-grow spinner-grow-sm mt-1"
+                                                    aria-hidden="true"></span>
                                                 <span role="status">
                                                     <!-- Остановиь! -->
                                                 </span>
@@ -91,14 +88,6 @@ function onSubmit(data: Event) {
                                         style="width: 25%"></div>
                                 </div> -->
                             </form>
-
-
-
-                            <!-- <div class="d-grid gap-2 mt-2">
-                                <button type="submit" class="btn btn-danger mx-auto">
-                                    <span role="status">Остановиь!</span>
-                                </button>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -120,8 +109,6 @@ function onSubmit(data: Event) {
 }
 
 .lv-instruction {
-    //   font-family: cursive;
     padding: 1.5rem;
-    //   background: #f0f0f0;  
 }
 </style>

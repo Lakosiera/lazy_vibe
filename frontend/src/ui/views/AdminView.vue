@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import IdeasView from './IdeasView.vue';
+
+
 
 </script>
 
@@ -8,4 +11,6 @@
             Админка
         </div>
     </div>
+    <IdeasView />
+
 </template>

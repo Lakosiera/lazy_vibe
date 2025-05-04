@@ -19,12 +19,5 @@
         "description": "Хочу стать повелителем мира!",
         "time": "3000 лет",
         "instruction": ""
-    },
-    {
-        "id": 0,
-        "name": "",
-        "description": "",
-        "time": "",
-        "instruction": ""
     }
 ]

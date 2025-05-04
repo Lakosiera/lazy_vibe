@@ -54,7 +54,7 @@ function searchInput(event: Event) {
             </div>
         </div>
 
-        <div v-if="!search.searchIsQueryEmpty && !search.searchIsEmpty" class=" container mt-5 lh-lg text-start">
+        <div v-if="!search.searchIsQueryEmpty && !search.searchIsEmpty" class="container mt-5 lh-lg text-start">
             <div class="list-group list-group-flush">
                 <div class="list-group-item p-1">
                     <div class="row text-center">
@@ -65,7 +65,7 @@ function searchInput(event: Event) {
                 </div>
                 <RouterLink v-for="res in search.searchResult"
                     class="list-group-item list-group-item-action p-1" 
-                    :to="{name: 'ideaId', params: {id: res.id}}">
+                    :to="{name: 'idea', params: {id: res.id}}">
                     <div class="row">
                         <div class="col-3">{{ res.name }}</div>
                         <div class="col text-truncate">{{ res.description }}</div>

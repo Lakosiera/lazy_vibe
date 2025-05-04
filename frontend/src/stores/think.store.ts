@@ -11,8 +11,8 @@ interface State {
 
 const defaultState: State = {
     idea: {
-        name: "TODO убрать",
-        description: "TODO убрать"
+        // name: "TODO убрать",
+        // description: "TODO убрать"
     },
     inProcesse: false,
 }
@@ -22,7 +22,7 @@ export const useThinkStore = defineStore(STORE_NAME, {
         return defaultState
     },
     getters: {
-        ideaReadyToThink: (state) => (state.idea.name.length > 0 && state.idea.description.length > 0),
+        ideaReadyToThink: (state) => (state.idea.name != null && state.idea.description != null && state.idea.name.length > 0 && state.idea.description.length > 0),
         ideaEmpty: (state) => (state.idea.instruction?.length || 0) == 0,
     },
     actions: {

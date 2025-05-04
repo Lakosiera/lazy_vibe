@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../ui/views/HomeView.vue'
 import AboutView from '../ui/views/AboutView.vue'
-import ThinkView from '@/ui/views/IdeaCreateView.vue'
-import SearchView from '@/ui/views/IdeaSearchView.vue'
+import ThinkView from '@/ui/views/ThinkView.vue'
+import SearchView from '@/ui/views/SearchView.vue'
 import AdminView from '@/ui/views/AdminView.vue'
 import IdeaView from '@/ui/views/IdeaView.vue'
 
@@ -25,13 +25,8 @@ const router = createRouter({
       component: SearchView,
     },
     {
-      path: '/idea',
+      path: '/idea/:id?',
       name: 'idea',
-      component: IdeaView,
-    },
-    {
-      path: '/idea/:id',
-      name: 'ideaId',
       component: IdeaView,
     },
     {
