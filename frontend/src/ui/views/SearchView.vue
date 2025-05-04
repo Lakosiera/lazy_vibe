@@ -55,8 +55,8 @@ function searchInput(event: Event) {
         </div>
 
         <div v-if="!search.searchIsQueryEmpty && !search.searchIsEmpty" class="container mt-5 lh-lg text-start">
-            <div class="list-group list-group-flush">
-                <div class="list-group-item p-1">
+            <div class="list-group list-group-flush _bg-transparent">
+                <div class="list-group-item p-1 bg-transparent">
                     <div class="row text-center">
                         <div class="col-3">Идея</div>
                         <div class="col">Описание</div>
@@ -64,7 +64,7 @@ function searchInput(event: Event) {
                     </div>
                 </div>
                 <RouterLink v-for="res in search.searchResult"
-                    class="list-group-item list-group-item-action p-1" 
+                    class="lv-hover list-group-item list-group-item-action p-1 bg-transparent" 
                     :to="{name: 'idea', params: {id: res.id}}">
                     <div class="row">
                         <div class="col-3">{{ res.name }}</div>
@@ -76,3 +76,9 @@ function searchInput(event: Event) {
         </div>
     </div>
 </template>
+
+<style lang="scss">
+.lv-hover:hover {
+    background-color: var(--bs-list-group-action-hover-bg) !important;
+}
+</style>
