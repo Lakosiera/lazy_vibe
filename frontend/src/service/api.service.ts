@@ -11,7 +11,9 @@ export const api = {
     ideaDelete
 }
 
-const BASE_API_URL = (!isGitHub()) ? "/api" : "/demo/api"
+const BASE = import.meta.env.BASE_URL
+console.log(BASE)
+const BASE_API_URL = (!isGitHub()) ? "${BASE}api" : "${BASE}/demo/api"
 const SUFFIX = (!isGitHub()) ? "" : ".json"
 
 async function search(text: string): Promise<Idea[]> {
