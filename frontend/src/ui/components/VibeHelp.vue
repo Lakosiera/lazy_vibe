@@ -4,10 +4,7 @@ import LazeVibeIcon from '../icons/IconLazeVibe.vue'
 interface Props {
     title?: string,
 }
-
-const { title } = withDefaults(defineProps<Props>(), {
-    title: "",
-})
+const { title } = defineProps<Props>()
 </script>
 <template>
     <div class="d-flex">

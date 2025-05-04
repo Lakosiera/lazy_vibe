@@ -5,7 +5,7 @@ interface Props {
     idea: Idea,
 }
 
-const { idea } = withDefaults(defineProps<Props>(), {})
+const { idea } = defineProps<Props>()
 </script>
 
 <template>

@@ -53,7 +53,6 @@ export async function savePdf({ data, name }: { data: any, name?: string }) {
             },
         ],
     }
-
     const handle = await window.showSaveFilePicker(opts)
 
     // Write the blob to the file.

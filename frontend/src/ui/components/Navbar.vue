@@ -46,7 +46,7 @@ import LogoIcon from '../icons/IconLogo.vue'
 
 
 <style lang="scss" scoped>
-@import "bootstrap/scss/bootstrap.scss";
+// @import "bootstrap/scss/bootstrap.scss";
 
 .lv-nav-bg {
     // @extend .bg-dark;
