@@ -1,13 +1,11 @@
-// https://web.dev/patterns/files/save-a-file?hl=ru
 
 import jsPDF from "jspdf";
 import type { Idea } from '@/entity/idea'
 import { fontComfortaa } from '@/utils/font'
 
-const fontComfortaaBase65 = ""
-
+// https://web.dev/patterns/files/save-a-file?hl=ru
 export async function saveJson({ data, name }: { data: any, name?: string }) {
-    const opts = {
+    const opts: SaveFilePickerOptions = {
         suggestedName: name,
         types: [
             {
@@ -46,7 +44,7 @@ export async function savePdf({ data, name }: { data: any, name?: string }) {
     // doc.save(`${name}.pdf`)
 
 
-    const opts = {
+    const opts: SaveFilePickerOptions = {
         suggestedName: name,
         types: [
             {
