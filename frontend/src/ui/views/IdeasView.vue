@@ -21,7 +21,7 @@ function goTo(id?: number) {
         <div class="container">
             <div class="card shadow _rounded-2">
                 <ul class="list-group list-group-flush">
-                    <li v-for="idea in ideas.all" @click="goTo(idea.id)" class="list-group-item list-group-item-action">
+                    <li v-for="idea in ideas.all" @click="goTo(idea.id)" class="list-group-item list-group-item-action" role="button">
                         <div class="row">
                             <div class="col-3">{{ idea.name }}</div>
                             <div class="col text-truncate">{{ idea.description }}</div>

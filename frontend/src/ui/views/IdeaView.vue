@@ -3,6 +3,9 @@ import router from '@/router';
 import { useIdeaStore } from '@/stores/idea.store';
 import { onMounted, ref, toRef, watch } from 'vue';
 import { onBeforeRouteUpdate, useRoute } from 'vue-router';
+import IconDownload from '../icons/IconDownload.vue';
+import IconFilePdf from '../icons/IconFilePdf.vue';
+import IconFile from '../icons/IconFile.vue';
 
 const route = useRoute()
 const ideas = useIdeaStore()
@@ -42,17 +45,26 @@ function onDelete() {
 function onUpdate() {
     ideas.doUpdate(ideas.current)
 }
+
+
 </script>
 
 <template>
     <div class="container-fluid py-3">
         <div class="container">
             <div class="card shadow rounded-3">
-                <div class="card-body p-2">
-
+                <div class="card-body px-2 pt-1 pb-0">
+                    <div class="d-grid gap-2 mt-1 d-md-flex">
+                        <button :disabled="id <= 1" @click="goTo(id - 1)" class="btn btn-sm btn-dark">
+                            <span class="badge rounded-pill text-bg-primary">&nbsp;&nbsp;&laquo;&nbsp;&nbsp;</span>
+                        </button>
+                        <button :disabled="id >= ideas.count" @click="goTo(id + 1)" class="btn  btn-sm btn-dark">
+                            <span class="badge rounded-pill text-bg-primary">&nbsp;&nbsp;&raquo;&nbsp;&nbsp;</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card-body p-2">
 
+                <div class="card-body p-2">
                     <div v-if="id" class="">
                         <form @submit.prevent="() => { }">
                             <div class="input-group mb-1">
@@ -76,15 +88,30 @@ function onUpdate() {
                                     placeholder="Время">
                             </div>
 
-                            <div class="d-grid gap-2 mt-1 d-md-flex _justify-content-md-end">
-                                <button :disabled="id <= 1" @click="goTo(id - 1)" class="btn btn-dark">
-                                    <span
-                                        class="badge rounded-pill text-bg-primary">&nbsp;&nbsp;&laquo;&nbsp;&nbsp;</span>
-                                </button>
-                                <button :disabled="id >= ideas.count" @click="goTo(id + 1)" class="btn btn-dark">
-                                    <span
-                                        class="badge rounded-pill text-bg-primary">&nbsp;&nbsp;&raquo;&nbsp;&nbsp;</span>
-                                </button>
+                            <div class="d-grid gap-2 mt-1 d-md-flex">
+                                <div class="btn-group-vertical" role="group" aria-label="">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-dark dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <IconDownload class="me-2" />
+                                            Скачать
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <div @click="ideas.savePdf" class="dropdown-item" role="button">
+                                                    <IconFilePdf class="me-2" />
+                                                    PDF
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div @click="ideas.saveJson" class="dropdown-item" role="button">
+                                                    <IconFile class="me-2" />
+                                                    json
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
 
                                 <div class="flex-grow-1"></div>
 

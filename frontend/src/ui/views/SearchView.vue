@@ -4,6 +4,8 @@ import { ref, type Ref } from 'vue';
 import { debounce } from "@/utils/input";
 import { useSearchStore } from '@/stores/search.store';
 import { RouterLink } from "vue-router";
+import SearchItem from "../components/SearchItem.vue";
+import router from "@/router";
 
 const search = useSearchStore()
 
@@ -22,6 +24,10 @@ function searchInput(event: Event) {
         isSearching.value = true
         searchDebounce(el.value || "")
     }
+}
+
+function goTo(id?: number) {
+    router.push({ name: 'idea', params: { id: `${id}` } })
 }
 </script>
 
@@ -45,33 +51,19 @@ function searchInput(event: Event) {
                             placeholder="Подайте мне идею!" aria-label="Username" aria-describedby="addon-wrapping">
                     </div>
                 </div>
+          
+                <ul v-if="!search.searchIsQueryEmpty && !search.searchIsEmpty" class="list-group list-group-flush">
+                    <li  v-for="idea in search.searchResult"  @click="goTo(idea.id)"
+                        class="list-group-item list-group-item-action" role="button">
+                        <SearchItem :idea="idea"/>
+                    </li>
+                </ul>
             </div>
         </div>
 
         <div class="container text-center mt-5">
             <div v-if="search.searchIsQueryEmpty || search.searchIsEmpty" class="">
                 В голове пусто
-            </div>
-        </div>
-
-        <div v-if="!search.searchIsQueryEmpty && !search.searchIsEmpty" class="container mt-5 lh-lg text-start">
-            <div class="list-group list-group-flush _bg-transparent">
-                <div class="list-group-item p-1 bg-transparent">
-                    <div class="row text-center">
-                        <div class="col-3">Идея</div>
-                        <div class="col">Описание</div>
-                        <div class="col-2">Сроки</div>
-                    </div>
-                </div>
-                <RouterLink v-for="res in search.searchResult"
-                    class="lv-hover list-group-item list-group-item-action p-1 bg-transparent" 
-                    :to="{name: 'idea', params: {id: res.id}}">
-                    <div class="row">
-                        <div class="col-3">{{ res.name }}</div>
-                        <div class="col text-truncate">{{ res.description }}</div>
-                        <div class="col-2">{{ res.time }}</div>
-                    </div>
-                </RouterLink>
             </div>
         </div>
     </div>

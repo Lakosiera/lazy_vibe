@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { api } from '@/service/api.service'
 import type { Idea } from '@/entity/idea'
+import { saveJson, savePdf } from '@/service/download.service'
 
 const STORE_NAME = 'idea'
 
@@ -57,6 +58,26 @@ export const useIdeaStore = defineStore(STORE_NAME, {
             try {
                 if (id == null) throw new Error("ID не задан");
                 this.current = await api.ideaDelete(id)
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async saveJson() {
+            try {
+                saveJson({
+                    name:this.current.name, 
+                    data: this.current
+                })
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async savePdf() {
+            try {
+                savePdf({
+                    name:this.current.name, 
+                    data: this.current
+                })
             } catch (error) {
                 console.log(error)
             }
