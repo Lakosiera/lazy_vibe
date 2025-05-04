@@ -22,6 +22,7 @@ export const useIdeaStore = defineStore(STORE_NAME, {
         return defaultState
     },
     getters: {
+        currentIdValid: (state) => state.current.id != null,
     },
     actions: {
         async doReadAll() {
@@ -46,10 +47,13 @@ export const useIdeaStore = defineStore(STORE_NAME, {
                 console.log(error)
             }
         },
-        async doUpdate(idea: Idea) {
+        async onCreateOrUpdate(idea: Idea) {
             try {
-                if (idea.id == null) throw new Error("ID не задан");
-                this.current = await api.ideaUpdate(idea.id, idea)
+                if (idea.id == null) {
+                    this.current = await api.ideaCreate(idea)
+                } else {
+                    this.current = await api.ideaUpdate(idea.id, idea)
+                }
             } catch (error) {
                 console.log(error)
             }
@@ -58,6 +62,16 @@ export const useIdeaStore = defineStore(STORE_NAME, {
             try {
                 if (id == null) throw new Error("ID не задан");
                 this.current = await api.ideaDelete(id)
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async saveAllJson(name: string) {
+            try {
+                saveJson({
+                    name: name, 
+                    data: this.all
+                })
             } catch (error) {
                 console.log(error)
             }
@@ -82,5 +96,12 @@ export const useIdeaStore = defineStore(STORE_NAME, {
                 console.log(error)
             }
         },
+        isEmpty(idea: Idea): boolean {
+            if (idea.name == null) return true
+            if (idea.description == null) return true
+            if (idea.name.trim() == "") return true
+            if (idea.description.trim() == "") return true
+            return false
+        }
     }
 })

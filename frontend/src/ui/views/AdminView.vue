@@ -12,5 +12,4 @@ import IdeasView from './IdeasView.vue';
         </div>
     </div>
     <IdeasView />
-
 </template>

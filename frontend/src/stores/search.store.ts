@@ -27,7 +27,7 @@ export const useSearchStore = defineStore(STORE_NAME, {
     actions: {
         async doSearch(text: string) {
             try {
-                this.result = await api.search(text)
+                this.result = await api.search(text) // TODO filter empty
                 this.query = text
             } catch (error) {
                 console.log(error)

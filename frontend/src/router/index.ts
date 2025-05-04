@@ -43,3 +43,7 @@ const router = createRouter({
 })
 
 export default router
+
+export function goTo(id?: number) {
+  router.push({ name: 'idea', params: { id: `${id || ""}` } })
+}

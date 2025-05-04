@@ -3,9 +3,8 @@ import IconSearch from "@/ui/icons/IconSearch.vue";
 import { ref, type Ref } from 'vue';
 import { debounce } from "@/utils/input";
 import { useSearchStore } from '@/stores/search.store';
-import { RouterLink } from "vue-router";
 import SearchItem from "../components/SearchItem.vue";
-import router from "@/router";
+import { goTo } from "@/router";
 
 const search = useSearchStore()
 
@@ -16,18 +15,15 @@ const searchDebounce = debounce((value: string) => {
         .finally(() => {
             isSearching.value = false
         })
-}, 200)
+}, 300)
 
 function searchInput(event: Event) {
     const el = event.target as HTMLInputElement
     if (el.value.trim() != "") {
         isSearching.value = true
+        search.result = []
         searchDebounce(el.value || "")
     }
-}
-
-function goTo(id?: number) {
-    router.push({ name: 'idea', params: { id: `${id}` } })
 }
 </script>
 
@@ -52,7 +48,7 @@ function goTo(id?: number) {
                     </div>
                 </div>
           
-                <ul v-if="!search.searchIsQueryEmpty && !search.searchIsEmpty" class="list-group list-group-flush">
+                <ul v-if="!search.searchIsQueryEmpty && !search.searchIsEmpty" class="list-group list-group-flush rounded-bottom-3">
                     <li  v-for="idea in search.searchResult"  @click="goTo(idea.id)"
                         class="list-group-item list-group-item-action" role="button">
                         <SearchItem :idea="idea"/>
