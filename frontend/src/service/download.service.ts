@@ -33,9 +33,9 @@ export async function savePdf({ data, name }: { data: any, name?: string }) {
 
     doc.setFont("Comfortaa-Regular");
 
-    let pName = doc.splitTextToSize(idea.name, 200)
-    let pDescription = doc.splitTextToSize(idea.description, 200)
-    let pInstruction = doc.splitTextToSize(idea.instruction, 200)
+    let pName = doc.splitTextToSize(idea.name || "", 200)
+    let pDescription = doc.splitTextToSize(idea.description || "", 200)
+    let pInstruction = doc.splitTextToSize(idea.instruction || "", 200)
 
     doc.text(pName, 10, 10);
     doc.text(pDescription, 10, 30);
