@@ -7,32 +7,38 @@ dotenv: ['.env', '{{.ENV}}/.env', '{{.HOME}}/.env']
 
 tasks:
   default:
+    desc: "Авто старт всего"
     cmds:
       - task: up
 
   up:
-    desc: "server up"
+    desc: "Старт докера"
     cmds:
       - docker compose up -d
 
+  build:
+    desc: "Перезборка докера"
+    cmds:
+      - docker compose up -d  --build
+
   down:
-    desc: "server down"
+    desc: "Стоп докера"
     cmds:
       - docker compose down
   
   watch:
-    desc: "server watch"
+    desc: "Смотреть изменения"
     cmds:
       - docker compose watch
 
   restart:
-    desc: "server restart"
+    desc: "Рестарт всего"
     cmds:
       - task: down
       - task: up
 
   reload:
-    desc: "nginx reload"
+    desc: "Обновить конфиг nginx"
     cmds:
       - docker exec -it {{.PROJECT_NAME}}-nginx nginx -s reload
 
