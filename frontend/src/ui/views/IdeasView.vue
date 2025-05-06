@@ -3,7 +3,6 @@ import { useIdeaStore } from '@/stores/idea.store';
 import IconDownload from '../icons/IconDownload.vue';
 import { goTo } from '@/router';
 import IconPlus from '../icons/IconPlus.vue';
-import IconFileExport from '../icons/IconFileExport.vue';
 
 const ideas = useIdeaStore()
 </script>

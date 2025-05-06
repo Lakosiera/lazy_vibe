@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'lazy_vibe.apps.LazyVibeConfig'
 ]
 
+REST_FRAMEWORK = {
+    # 'DATETIME_FORMAT': '%s000',
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

@@ -8,6 +8,6 @@ class IdeaSerializer(serializers.ModelSerializer):
         # модель
         model = Idea
         # поля для сериализации
-        fields = ["id", "raw_idea"]
+        fields = "__all__"
         # поле только для чтения
-        read_only_fields = ["id"]
+        read_only_fields = ["id", "created_at", "updated_at", "deleted_at"]

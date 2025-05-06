@@ -1,0 +1,12 @@
+GET http://localhost:82/api/idea HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://localhost:82/api/search HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://localhost:82/api/think HTTP/1.1
+content-type: application/json

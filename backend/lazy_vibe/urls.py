@@ -4,12 +4,13 @@ from . import views
 
 
 # Стандартные пути сгенерированые Django REST API для просмотра данных
-router = routers.DefaultRouter()
+router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'idea', views.IdeaViewSet)
 
 
 # пути для модуля 'laba_7'
 urlpatterns = [
-    path('router/', include(router.urls)),
-    path('', views.LazyVibeView.as_view()),
+    path('', include(router.urls)),
+    path('think', views.ThinkApiView.as_view()),
+    path('search', views.SearchApiView.as_view()),
 ]

@@ -18,51 +18,72 @@ const SUFFIX = (!isGitHub()) ? "" : ".json"
 
 async function search(text: string): Promise<Idea[]> {
     const response = await fetch(`${BASE_API_URL}/search${SUFFIX}`, {
-        method: "GET"
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
     })
     return await response.json()
 }
 
 async function think(idea: Idea): Promise<Idea> {
     const response = await fetch(`${BASE_API_URL}/think${SUFFIX}`, {
-        method: "GET"
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
     })
     return await response.json()
 }
 
 async function ideaReadAll(): Promise<Idea[]> {
-    const response = await fetch(`${BASE_API_URL}/ideas${SUFFIX}`, {
-        method: "GET"
+    const response = await fetch(`${BASE_API_URL}/idea${SUFFIX}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
     })
     return await response.json()
 }
 
 async function ideaCreate(idea: Idea): Promise<Idea> {
-    const response = await fetch(`${BASE_API_URL}/ideas${SUFFIX}`, {
+    const response = await fetch(`${BASE_API_URL}/idea${SUFFIX}`, {
         method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
         body: JSON.stringify(idea)
     })
     return await response.json()
 }
 
 async function ideaRead(id: number): Promise<Idea> {
-    const response = await fetch(`${BASE_API_URL}/ideas/${id}${SUFFIX}`, {
-        method: "GET"
+    const response = await fetch(`${BASE_API_URL}/idea/${id}${SUFFIX}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
     })
     return await response.json()
 }
 
 async function ideaUpdate(id: number, idea: Idea): Promise<Idea> {
-    const response = await fetch(`${BASE_API_URL}/ideas/${id}${SUFFIX}`, {
+    const response = await fetch(`${BASE_API_URL}/idea/${id}${SUFFIX}`, {
         method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
         body: JSON.stringify(idea)
     })
     return await response.json()
 }
 
 async function ideaDelete(id: number): Promise<any> {
-    const response = await fetch(`${BASE_API_URL}/ideas/${id}${SUFFIX}`, {
-        method: "DELETE"
+    const response = await fetch(`${BASE_API_URL}/idea/${id}${SUFFIX}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
     })
     return await response.json()
 }

@@ -54,6 +54,7 @@ export const useIdeaStore = defineStore(STORE_NAME, {
                 } else {
                     this.current = await api.ideaUpdate(idea.id, idea)
                 }
+                this.doReadAll()
             } catch (error) {
                 console.log(error)
             }
@@ -62,6 +63,7 @@ export const useIdeaStore = defineStore(STORE_NAME, {
             try {
                 if (id == null) throw new Error("ID не задан");
                 this.current = await api.ideaDelete(id)
+                this.doReadAll()
             } catch (error) {
                 console.log(error)
             }
