@@ -14,7 +14,7 @@ interface State {
 }
 
 const defaultState: State = {
-    query: "кот",
+    query: "",
     fuseResult: [],
 }
 
