@@ -30,11 +30,11 @@ function highlight(css: string): string {
         result += [
             source.substring(index, startIndex),
             `<b class="${css}">`,
-            source.substring(startIndex, endIndex),
+            source.substring(startIndex, endIndex+1),
             `</b>`,
         ].join('')
 
-        index = endIndex
+        index = endIndex+1
     })
 
     result += source.substring(index)
